@@ -157,11 +157,12 @@ def handle(update):
                                     [InlineKeyboardButton(text="Keleksi Pap Viral😍", url='https://semawur.com/StJkG3lhFPa')]
                                 ]
                             ))	
-			bot.sendMessage(uid, "Wajib Join Grup @cewecowobersatu", reply_markup=keyboard)			
-
-                elif text == 'Donasi':
-                        keyboard = ReplyKeyboardMarkup(keyboard=[['🔙 Main Menu']], resize_keyboard=True)
-                        bot.sendMessage(uid, "Mau donasi ke admin?\nCukup dengan cara klik link aja🙂\nLink : https://realsht.mobi/GArv4" , reply_markup=keyboard)
+			bot.sendMessage(uid, "Wajib Join Grup @cewecowobersatu", reply_markup=keyboard)
+			
+		elif text == 'Donasi':
+			keyboard = ReplyKeyboardMarkup(keyboard=[['🔙 Main Menu']], resize_keyboard=True)
+			bot.sendMessage(uid, "Mau donasi ke admin?\nCukup dengan cara klik link aja🙂\nLink : https://realsht.mobi/GArv4" , reply_markup=keyboard)
+			
 		elif text == '🔙 Main Menu':
 			keyboard = ReplyKeyboardMarkup(keyboard=[['Cari Pasangan Sange👥'], ['Join Grup Sange','Info Profile','Admin']], resize_keyboard=True)
 			bot.sendMessage(uid, "Selamat Bergabung DiBot sange🙊\n\nJangan Lupa Grup @cewecowobersatu", reply_markup=keyboard)
