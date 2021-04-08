@@ -81,7 +81,7 @@ def handle(update):
 		if text == "/start":
 			if not uid in queue["occupied"]:
 				keyboard = ReplyKeyboardMarkup(keyboard=[['Cari Pasangan Sange👥'], ['Join Grup Sange', 'Info Profile', 'Admin']], resize_keyboard=True)
-				bot.sendMessage(uid, "Selamat Bergabung Di\nBot sange🙊\n\nJangan Lupa Grup @viralmantap6\nLINK BOKEP [FREE](https://semawur.com/ccRSCsI7u)", parse_mode= 'MarkDown',disable_web_page_preview= True ,reply_markup=keyboard)
+				bot.sendMessage(uid, "Selamat Bergabung Di\nBot sange🙊\n\nJangan Lupa Grup @cewecowobersatu\nLINK BOKEP [FREE](https://semawur.com/ccRSCsI7u)", parse_mode= 'MarkDown',disable_web_page_preview= True ,reply_markup=keyboard)
 
 		if text == "/test":
 			if not uid in queue["occupied"]:
@@ -141,14 +141,14 @@ def handle(update):
 			print('[SB] ' + str(uid) + ' meninggalkan jodohnya ' + str(queue["occupied"][uid]))
 			keyboard = ReplyKeyboardMarkup(keyboard=[['Cari Pasangan Sange👥'], ['Join Grup Sange','Info Profile','Admin']], resize_keyboard=True)
 			bot.sendMessage(uid, "Obrolan telah berakhir\n\nLink Bokep : https://semawur.com/ccRSCsI7u")
-			bot.sendMessage(uid, "Selamat Bergabung DiBot sange🙊\n\nJangan Lupa Grup @viralmantap6", reply_markup=keyboard)
+			bot.sendMessage(uid, "Selamat Bergabung DiBot sange🙊\n\nJangan Lupa Grup @cewecowobersatu", reply_markup=keyboard)
 			bot.sendMessage(queue["occupied"][uid], "Pasangan kamu keluar dari obrolan\n\nDia membagikan Link Bokep : https://semawur.com/ccRSCsI7u", reply_markup=keyboard)
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid]
 
 		elif text == 'Join Grup Sange':
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Link Bokep'],['🔙 Main Menu']], resize_keyboard=True)
-			bot.sendMessage(uid, "WAJIB JOIN GRUP INI @viralmantap6\nGAK JOIN GA VCS :v", reply_markup=keyboard)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Link Bokep', 'Donasi'],['🔙 Main Menu']], resize_keyboard=True)
+			bot.sendMessage(uid, "WAJIB JOIN GRUP INI @cewecowobersatu\nGAK JOIN GA VCS :v", reply_markup=keyboard)
 
 		elif text == 'Link Bokep':
 			keyboard = ReplyKeyboardMarkup(keyboard=[['🔙 Main Menu']], resize_keyboard=True)
@@ -157,11 +157,14 @@ def handle(update):
                                     [InlineKeyboardButton(text="Keleksi Pap Viral😍", url='https://semawur.com/StJkG3lhFPa')]
                                 ]
                             ))	
-			bot.sendMessage(uid, "Wajib Join Grup @viralmantap6", reply_markup=keyboard)			
+			bot.sendMessage(uid, "Wajib Join Grup @cewecowobersatu", reply_markup=keyboard)			
 
+                elif text == 'Donasi':
+                        keyboard = ReplyKeyboardMarkup(keyboard=[['🔙 Main Menu']], resize_keyboard=True)
+                        bot.sendMessage(uid, "Mau donasi ke admin?\nCukup dengan cara klik link aja🙂\nLink : https://realsht.mobi/GArv4" , reply_markup=keyboard)
 		elif text == '🔙 Main Menu':
 			keyboard = ReplyKeyboardMarkup(keyboard=[['Cari Pasangan Sange👥'], ['Join Grup Sange','Info Profile','Admin']], resize_keyboard=True)
-			bot.sendMessage(uid, "Selamat Bergabung DiBot sange🙊\n\nJangan Lupa Grup @viralmantap6", reply_markup=keyboard)
+			bot.sendMessage(uid, "Selamat Bergabung DiBot sange🙊\n\nJangan Lupa Grup @cewecowobersatu", reply_markup=keyboard)
 
 		elif text == "Next ▶️" and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan obrolan dengan ' + str(queue["occupied"][uid]))
