@@ -272,4 +272,4 @@ if __name__ == '__main__':
 	bot.message_loop(handle)
 
 	while True:
-		time.sleep(3)
+		time.sleep(10)
