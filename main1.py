@@ -103,7 +103,7 @@ def handle(update):
 
 		if text == "/start":
 			if not uid in queue["occupied"]:
-				asw = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','MyGrup🐱'], ['Admin']], resize_keyboard=True)
+				asw = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','MyGrup🐱'],['Bot VCS'], ['Admin']], resize_keyboard=True)
 				bot.sendMessage(uid, "Selamat Bergabung Di\nBot sange🙊\n\nJangan Lupa Grup @cewecowobersatu\nLINK BOKEP [FREE](https://semawur.com/ccRSCsI7u)", parse_mode= 'MarkDown',disable_web_page_preview= True ,
 				reply_markup=asw)
 
@@ -190,7 +190,7 @@ def handle(update):
 
 		elif text == '❌ Exit' and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan jodohnya ' + str(queue["occupied"][uid]))
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','MyGrup🐱'], ['Admin']], resize_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','MyGrup🐱'],['Bot VCS'], ['Admin']], resize_keyboard=True)
 			bot.sendMessage(uid, "Obrolan telah berakhir\n\nLink Bokep : https://semawur.com/ccRSCsI7u")
 			bot.sendMessage(uid, "Selamat Bergabung DiBot sange🙊\n\nJangan Lupa Grup @cewecowobersatu", reply_markup=keyboard)
 			bot.sendMessage(queue["occupied"][uid], "Pasangan kamu keluar dari obrolan\n\nDia membagikan Link Bokep : https://semawur.com/ccRSCsI7u", reply_markup=keyboard)
@@ -212,8 +212,11 @@ def handle(update):
 		elif text == 'Donasi':
 			bot.sendMessage(uid, "Mau donasi ke admin?\nCukup dengan cara klik link aja🙂\nLink : https://realsht.mobi/GArv4")
 			
+		elif text == 'Bot VCS':
+			bot.sendMessage(uid, "Coba Bot Vcs Free\n[BOT VCS FREE](https://t.me/VCS_TALENHIJAB_bot?start=r05827436540)", parse_mode= 'MarkDown',disable_web_page_preview= True)
+			
 		elif text == '🔙 Main Menu':
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','MyGrup🐱'], ['Admin']], resize_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','MyGrup🐱'],['Bot VCS'], ['Admin']], resize_keyboard=True)
 			bot.sendMessage(uid, "Selamat Bergabung DiBot sange🙊\n\nJangan Lupa Grup @cewecowobersatu", reply_markup=keyboard)
 
 		elif text == "Next ▶️" and uid in queue["occupied"]:
