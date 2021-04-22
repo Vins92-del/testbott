@@ -72,35 +72,34 @@ def handle(update):
 				bot.sendMessage(queue["occupied"][uid], "Stranger tried to send you a photo, but you disabled this,  you can enable photos by using the /nopics command")
 				bot.sendMessage(uid, "Stranger disabled photos, and will not receive your photos")
 						
-
-			if 'video' in update:
-				video = update['video']['file_id']
-				bot.sendChatAction(queue["occupied"][uid], "upload_video")
-				bot.sendVideo(queue["occupied"][uid], video)
+		if 'video' in update:
+			video = update['video']['file_id']
+			bot.sendChatAction(queue["occupied"][uid], "upload_video")
+			bot.sendVideo(queue["occupied"][uid], video)
 				
-			if 'voice' in update:
-				voice = update['voice']['file_id']
-				bot.sendChatAction(queue["occupied"][uid], "record_voice")
-				bot.sendVoice(queue["occupied"][uid], voice)
+		if 'voice' in update:
+			voice = update['voice']['file_id']
+			bot.sendChatAction(queue["occupied"][uid], "record_voice")
+			bot.sendVoice(queue["occupied"][uid], voice)
 
-			if 'video_note' in update:
-				video_note = update['video_note']['file_id']
-				bot.sendChatAction(queue["occupied"][uid], "record_video_note")
-				bot.sendVideoNote(queue["occupied"][uid], video_note)
+		if 'video_note' in update:
+			video_note = update['video_note']['file_id']
+			bot.sendChatAction(queue["occupied"][uid], "record_video_note")
+			bot.sendVideoNote(queue["occupied"][uid], video_note)
 
-			if 'document' in update:
-				document = update['document']['file_id']
-				bot.sendChatAction(queue["occupied"][uid], "upload_document")
-				bot.sendDocument(queue["occupied"][uid], document)
+		if 'document' in update:
+			document = update['document']['file_id']
+			bot.sendChatAction(queue["occupied"][uid], "upload_document")
+			bot.sendDocument(queue["occupied"][uid], document)
+			
+		if 'audio' in update:
+			audio = update['audio']['file_id']
+			bot.sendChatAction(queue["occupied"][uid], "upload_voice")
+			bot.sendAudio(queue["occupied"][uid], audio)
 
-			if 'audio' in update:
-				audio = update['audio']['file_id']
-				bot.sendChatAction(queue["occupied"][uid], "upload_voice")
-				bot.sendAudio(queue["occupied"][uid], audio)
-
-			if 'sticker' in update:
-				sticker = update['sticker']['file_id']
-				bot.sendDocument(queue["occupied"][uid], sticker)
+		if 'sticker' in update:
+			sticker = update['sticker']['file_id']
+			bot.sendDocument(queue["occupied"][uid], sticker)
 
 		if text == "/start":
 			if not uid in queue["occupied"]:
