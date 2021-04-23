@@ -11,7 +11,6 @@ from datetime import datetime
 token = "1797322941:AAET79YsdfsZ0xtYUbrz257cHv2KlPZzgY0"
 bot = amanobot.Bot(token)
 
-profil = {}
 
 queue = {
 	"free":[],
@@ -117,16 +116,16 @@ def handle(update):
 			#except:
 				#pass
 
-		elif text == "/setting":
-			bot.sendMessage(uid, "Pilih Jenis Kelamin Knda", reply_markup={"inline_keyboard": [[{"text":"Pria👨‍🦰", "callback_data":"gender-laki"}, {"text":"Wanita👩🏻", "callback_data":"gender-perempuan"}]]})
+		#elif text == "/setting":
+		#	bot.sendMessage(uid, "Pilih Jenis Kelamin Knda", reply_markup={"inline_keyboard": [[{"text":"Pria👨‍🦰", "callback_data":"gender-laki"}, {"text":"Wanita👩🏻", "callback_data":"gender-perempuan"}]]})
 
-		if "data" in update:
-			if update["data"] == "gender-laki":
-				profil[uid] = {"name": update["from"]["first_name"], "gender": "Pria/Male👨‍🦰"}
-				bot.sendMessage(uid, "Gender telah di setting ke Pria👨‍🦰")
-			elif update["data"] == "gender-perempuan":
-					profil[uid] = {"name": update["from"]["first_name"], "gender": "Wanita/Female👩🏻"}
-					bot.sendMessage(uid, "Gender telah di setting ke Wanita👩🏻")
+		#if "data" in update:
+		#	if update["data"] == "gender-laki":
+		#		profil[uid] = {"name": update["from"]["first_name"], "gender": "Pria/Male👨‍🦰"}
+		#		bot.sendMessage(uid, "Gender telah di setting ke Pria👨‍🦰")
+		#	elif update["data"] == "gender-perempuan":
+		#			profil[uid] = {"name": update["from"]["first_name"], "gender": "Wanita/Female👩🏻"}
+		#			bot.sendMessage(uid, "Gender telah di setting ke Wanita👩🏻")
 
 		elif text == 'Admin':
 				keyboard = ReplyKeyboardMarkup(keyboard=[
@@ -167,14 +166,12 @@ def handle(update):
 				name = update["from"]["first_name"] + " " + update["from"]["last_name"]
 				_id = update["from"]["id"]
 				username = update["from"]["username"]
-				gender = profil[uid]["gender"]
 				date1 = datetime.fromtimestamp(update["date"], tz=pytz.timezone("asia/jakarta")).strftime("%d/%m/%Y %H:%M:%S").split()
 				text = "*Nama : " + str(name)+"*" +"\n"
 				text += "*ID Kamu :* " +"`"+ str(_id) +"`"+"\n"
 				text += "*Username :* @" + str(username) + "\n"
 				text += "*Tanggal :* " + str(date1[0]) +"\n"
 				text += "*Waktu :* " + str(date1[1]) + " WIB" "\n"
-				text += f"*Gender : {gender}*"
 				bot.sendMessage(uid, text, parse_mode='MarkDown')
 
 		elif text == 'Search 👥':
@@ -261,10 +258,8 @@ def handle(update):
 				queue["free"].remove(partner)
 				queue["occupied"][uid] = partner
 				queue["occupied"][partner] = uid
-				gender = profil[uid]["gender"]
-				gender1 = profil[partner]["gender"]
-				bot.sendMessage(uid, f'Pasangan sange ditemukan.., selamat ah aha ah😜\nJenis Kelamin : {gender1}', reply_markup=keyboard)
-				bot.sendMessage(partner, f'Pasangan sange ditemukann.., selamat sange😜\nJenis Kelamin : {gender}', reply_markup=keyboard)
+				bot.sendMessage(uid, f'Pasangan sange ditemukan.., selamat ah aha ah😜', reply_markup=keyboard)
+				bot.sendMessage(partner, f'Pasangan sange ditemukann.., selamat sange😜', reply_markup=keyboard)
 	except 	Exception as e:
 		print('[!] Error: ' + str(e))
 
@@ -272,4 +267,4 @@ if __name__ == '__main__':
 	bot.message_loop(handle)
 
 	while True:
-		time.sleep(10)
+		time.sleep()
