@@ -160,8 +160,6 @@ def handle(update):
 				return bot.sendMessage(uid, "Harap Isi Username Kamu!!")
 			if "last_name" not in update["from"]:
 				return bot.sendMessage(uid, "Harap Isi Nama Belakang Kamu!!")
-			if uid not in profil:
-				return bot.sendMessage(uid,"Kamu Belum Setting Gender Silahkan Tekan\n/setting")
 			if update["from"]["last_name"] != None:
 				name = update["from"]["first_name"] + " " + update["from"]["last_name"]
 				_id = update["from"]["id"]
@@ -175,8 +173,6 @@ def handle(update):
 				bot.sendMessage(uid, text, parse_mode='MarkDown')
 
 		elif text == 'Search 👥':
-			if uid not in profil:
-				return bot.sendMessage(uid,"Kamu Belum Setting Gender Silahkan Tekan\n/setting")
 			if not uid in queue["occupied"]:
 				keyboard = ReplyKeyboardMarkup(keyboard=[
 					['🔙 Main Menu']
