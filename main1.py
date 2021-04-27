@@ -8,7 +8,7 @@ import json
 import pytz
 from datetime import datetime
 
-token = "1744066833:AAFqoSbFbQ_GzlwcBRxfFzrcu-p3dJCv6cs"
+token = "1797322941:AAET79YsdfsZ0xtYUbrz257cHv2KlPZzgY0"
 bot = amanobot.Bot(token)
 
 
