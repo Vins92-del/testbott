@@ -1,6 +1,6 @@
 import amanobot
 from amanobot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
-from amanobot.namedtuple import ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, ForceReply
+from amanobot.namedtuple import ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton
 import random
 import time
 import os
@@ -8,7 +8,7 @@ import json
 import pytz
 from datetime import datetime
 
-token = "1797322941:AAET79YsdfsZ0xtYUbrz257cHv2KlPZzgY0"
+token = "1744066833:AAFqoSbFbQ_GzlwcBRxfFzrcu-p3dJCv6cs"
 bot = amanobot.Bot(token)
 
 
@@ -58,14 +58,12 @@ def handle(update):
 
 		if uid in queue["occupied"]:
 			if 'text' in update:
-				if text != "Hapus Keyboard" and text != "❌ Exit" and text !="Next ▶️" and text != "/key":
-					bot.sendChatAction(queue["occupied"][uid], "typing")
+				if text != "Hapus Keyboard" and text != "❌ Exit" and text !="Next ▶️" and text != "/refresh":
 					bot.sendMessage(queue["occupied"][uid], "" + text)
 			
 		if 'photo' in update:
 			if config[str(queue["occupied"][uid])]["pics"]:
 				photo = update['photo'][0]['file_id']
-				bot.sendChatAction(queue["occupied"][uid], "upload_photo")
 				bot.sendPhoto(queue["occupied"][uid], photo)
 			else:
 				bot.sendMessage(queue["occupied"][uid], "Stranger tried to send you a photo, but you disabled this,  you can enable photos by using the /nopics command")
@@ -73,36 +71,31 @@ def handle(update):
 						
 		if 'video' in update:
 			video = update['video']['file_id']
-			bot.sendChatAction(queue["occupied"][uid], "upload_video")
 			bot.sendVideo(queue["occupied"][uid], video)
 				
 		if 'voice' in update:
 			voice = update['voice']['file_id']
-			bot.sendChatAction(queue["occupied"][uid], "record_voice")
 			bot.sendVoice(queue["occupied"][uid], voice)
 
 		if 'video_note' in update:
 			video_note = update['video_note']['file_id']
-			bot.sendChatAction(queue["occupied"][uid], "record_video_note")
 			bot.sendVideoNote(queue["occupied"][uid], video_note)
 
 		if 'document' in update:
 			document = update['document']['file_id']
-			bot.sendChatAction(queue["occupied"][uid], "upload_document")
 			bot.sendDocument(queue["occupied"][uid], document)
 			
 		if 'audio' in update:
 			audio = update['audio']['file_id']
-			bot.sendChatAction(queue["occupied"][uid], "upload_voice")
 			bot.sendAudio(queue["occupied"][uid], audio)
 
 		if 'sticker' in update:
 			sticker = update['sticker']['file_id']
 			bot.sendDocument(queue["occupied"][uid], sticker)
 
-		if text == "/start":
+		if text == "/start" or text == "/refresh":
 			if not uid in queue["occupied"]:
-				asw = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','MyGrup🐱'],['Bot VCS'], ['Admin']], resize_keyboard=True)
+				asw = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','Menu🐱']], resize_keyboard=True, one_time_keyboard=True)
 				bot.sendMessage(uid, "Selamat Bergabung Di\nBot sange🙊\n\nJangan Lupa Grup @cewecowobersatu\nLINK BOKEP [FREE](https://semawur.com/ccRSCsI7u)", parse_mode= 'MarkDown',disable_web_page_preview= True ,
 				reply_markup=asw)
 
@@ -128,26 +121,23 @@ def handle(update):
 		#			bot.sendMessage(uid, "Gender telah di setting ke Wanita👩🏻")
 
 		elif text == 'Admin':
-				keyboard = ReplyKeyboardMarkup(keyboard=[
-					['🔙 Main Menu']
-				], resize_keyboard=True)
-				bot.sendMessage(uid, "Jika Ingin Mengirim Pesan ke admin Gunakan Perintah\n/pw Lalu Tulis Pesan\nContoh : /pw Hallo admin", reply_markup=keyboard)
+				bot.sendMessage(uid, "Di Nonaktifkan Sementara!")
 
-		if update["text"].split()[0] == "/pw":
-			text = update["text"].split()
-			if len(text) == 0:
-				bot.sendMessage(uid, "Masukan Pesan!")
-			try:
-				for uid in use2:
-					if "username" not in update["from"]:
-						_id1 = update["from"]["id"]
-						return bot.sendMessage(_id1, "Mau Ngirim Pesan keadmin\nIsi Username Kamu Dulu!!")
-					name = update["from"]["username"]
-					_id = update["from"]["id"]
-					bot.sendMessage(uid, "Username :@" + str(name) + " ID :" + str(_id) + "\nText : " + " ".join(text[1:]), parse_mode='MarkDown', disable_web_page_preview=True)
-					bot.sendMessage(_id, "@"+str(name)+"\nPesan Terkirim ke admin")
-			except:
-				pass
+		#if text == "/pw":
+		#	text = update["text"].split()[0]
+		#	if len(text) == 0:
+		#		bot.sendMessage(uid, "Masukan Pesan!")
+		#	try:
+		#		for uid in use2:
+		#			if "username" not in update["from"]:
+		#				_id1 = update["from"]["id"]
+		#				return bot.sendMessage(_id1, "Mau Ngirim Pesan keadmin\nIsi Username Kamu Dulu!!")
+		#			name = update["from"]["username"]
+		#			_id = update["from"]["id"]
+		#			bot.sendMessage(uid, "Username :@" + str(name) + " ID :" + str(_id) + "\nText : " + " ".join(text[1:]), parse_mode='MarkDown', disable_web_page_preview=True)
+		#			bot.sendMessage(_id, "@"+str(name)+"\nPesan Terkirim ke admin")
+		#	except:
+		#		pass
 
 		elif text == 'Total Users😈':
 			if not uid in queue["occupied"]:
@@ -174,24 +164,24 @@ def handle(update):
 
 		elif text == 'Search 👥':
 			if not uid in queue["occupied"]:
-				keyboard = ReplyKeyboardMarkup(keyboard=[
-					['🔙 Main Menu']
-				], resize_keyboard=True)
+				keyboard = ReplyKeyboardRemove()
 			bot.sendMessage(uid, 'Sedang pasangan sange kamu.. tunggu sebentar', reply_markup=keyboard)
 			print("[SB] " + str(uid) + " Join ke obrolan")
 			queue["free"].append(uid)
 
 		elif text == '❌ Exit' and uid in queue["occupied"]:
 			print('[SB] ' + str(uid) + ' meninggalkan jodohnya ' + str(queue["occupied"][uid]))
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','MyGrup🐱'],['Bot VCS'], ['Admin']], resize_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','Menu🐱']], resize_keyboard=True,one_time_keyboard=True)
 			bot.sendMessage(uid, "Obrolan telah berakhir\n\nLink Bokep : https://semawur.com/ccRSCsI7u")
 			bot.sendMessage(uid, "Selamat Bergabung DiBot sange🙊\n\nJangan Lupa Grup @cewecowobersatu", reply_markup=keyboard)
 			bot.sendMessage(queue["occupied"][uid], "Pasangan kamu keluar dari obrolan\n\nDia membagikan Link Bokep : https://semawur.com/ccRSCsI7u", reply_markup=keyboard)
 			del queue["occupied"][queue["occupied"][uid]]
 			del queue["occupied"][uid]
 
-		elif text == 'MyGrup🐱':
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Link Bokep', 'Donasi'],['🔙 Main Menu']], resize_keyboard=True)
+		elif text == 'Menu🐱':
+			keyboard = ReplyKeyboardMarkup(keyboard=[
+                ['Link Bokep', 'Donasi', 'Admin'],['Bot VCS'],['🔙 Main Menu']
+            ], resize_keyboard=True, one_time_keyboard=True)
 			bot.sendMessage(uid, "WAJIB JOIN GRUP INI @cewecowobersatu\nGAK JOIN GA VCS :v", reply_markup=keyboard)
 
 		elif text == 'Link Bokep':
@@ -209,7 +199,7 @@ def handle(update):
 			bot.sendMessage(uid, "Coba Bot Vcs Free\n[BOT VCS FREE](https://t.me/VCS_TALENHIJAB_bot?start=r05827436540)", parse_mode= 'MarkDown',disable_web_page_preview= True)
 			
 		elif text == '🔙 Main Menu':
-			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','MyGrup🐱'],['Bot VCS'], ['Admin']], resize_keyboard=True)
+			keyboard = ReplyKeyboardMarkup(keyboard=[['Search 👥','Profile📌'], ['Total Users😈','Menu🐱']], resize_keyboard=True, one_time_keyboard=True)
 			bot.sendMessage(uid, "Selamat Bergabung DiBot sange🙊\n\nJangan Lupa Grup @cewecowobersatu", reply_markup=keyboard)
 
 		elif text == "Next ▶️" and uid in queue["occupied"]:
@@ -226,15 +216,6 @@ def handle(update):
 				print("[SB] " + str(uid) + " Join ke obrolan") 
 				queue["free"].append(uid)
 
-		elif text == 'Hapus Keyboard':
-			lolt1 = ReplyKeyboardRemove()
-			bot.sendMessage(uid, 'Keyboard di Sembunyikan, klik /key untuk menampilkan keyboard', reply_markup=lolt1)
-
-		if text == "/key":
-			key = ReplyKeyboardMarkup(keyboard=[
-				['Next ▶️', '❌ Exit'], ['Hapus Keyboard']
-			], resize_keyboard=True)
-			bot.sendMessage(uid, 'Keyboard Di tampilkan', reply_markup=key)
 
 		if text == "/nopics":
 			config[str(uid)]["pics"] = not config[str(uid)]["pics"] 
@@ -248,8 +229,8 @@ def handle(update):
 			partner = random.choice(exList(queue["free"], uid))
 			if partner != uid:
 				keyboard = ReplyKeyboardMarkup(keyboard=[
-					['Next ▶️', '❌ Exit'], ['Hapus Keyboard']
-				],resize_keyboard=True)
+					['Next ▶️', '❌ Exit']
+				],resize_keyboard=True, one_time_keyboard=True)
 				print('[SB] ' + str(uid) + ' Berjodoh dengan ' + str(partner))
 				queue["free"].remove(partner)
 				queue["occupied"][uid] = partner
